@@ -3,7 +3,7 @@ import { Component } from "react";
 class Input extends Component {
     render() {
         return (
-            <input ref={this.props.myPropsRef} onChange={this.props.onChange} />
+            <input type={this.props.type} ref={this.props.myPropsRef} onChange={this.props.onChange} />
         )
     }
 }

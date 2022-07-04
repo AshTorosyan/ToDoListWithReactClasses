@@ -6,6 +6,9 @@ import List from "./components/List/List";
 import Listitem from "./components/Listitem/Listitem";
 import Wrapper from "./ui/Wrapper/Wrapper";
 import Card from "./ui/Card/Card";
+import Center from "./ui/Center/Center";
+import classes from './ui/Global.module.css';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -60,6 +63,7 @@ class App extends Component {
   render() {
     return(
       <Wrapper>
+        <Center className={classes.container}>
         <Card>
           <Inlinetext> search users  by name </Inlinetext>
           <Input onChange={this.changeSearchNameHandler} />
@@ -72,33 +76,32 @@ class App extends Component {
              <Inlinetext> user surname </Inlinetext> <Input myPropsRef={this.newUserSurname} />
            </Card>
            <Card>
-             <Inlinetext> user age </Inlinetext> <Input myPropsRef={this.newUserAge} />
+             <Inlinetext> user age </Inlinetext> <Input type='number' myPropsRef={this.newUserAge} />
            </Card>
            
-           <Button onClick={this.addNewUserHandler}> add </Button>
+           <Button className={classes.button} onClick={this.addNewUserHandler}> add </Button>
         </Card>
        
         
-        <List>
+        <List className={classes.list}>
           {
             this.state.userList.filter(this.filterUsers).map(user => {
               return (
-                <Listitem key={user.id}>
-                   <Inlinetext> {user.name} </Inlinetext>
-                   <Inlinetext> {user.surname} </Inlinetext>
-                   <Inlinetext> {user.age} </Inlinetext>
-                   <Button onClick={() => this.deleteUserHandler(user.id)}> Delete user form list </Button>
+                <Listitem className={classes.listitem} key={user.id}>
+                   <Inlinetext>  {user.name} </Inlinetext>
+                   <Inlinetext>  {user.surname} </Inlinetext>
+                   <Inlinetext>  {user.age} </Inlinetext>
+                   <Button className={classes.button} onClick={() => this.deleteUserHandler(user.id)}> Delete user form list </Button>
                 </Listitem>
               )
             })
           }
         </List>
+        </Center>
       </Wrapper>
     )
   }
   
-
-
 }
 
 export default App

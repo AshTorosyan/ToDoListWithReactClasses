@@ -7,7 +7,7 @@ class Card extends Component {
         return (
             <Wrapper>
               {this.props.children}
-            <br />
+              <br />
             </Wrapper>
         )
     }
