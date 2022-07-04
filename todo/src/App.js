@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import Wrapper from "./ui/Wrapper/Wrapper";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userList: [
+        {name: 'Narfioro', surname: 'Frielov', age: 32 , id: 1 },
+        {name: "Ashot", surname: 'Torosyan', age: 26, id: 2},
+        {name: "Garsia", surname: 'Todoer', age: 18, id: 3}
+      ],
+      idForNextUser: 4
+    }
+  }
+
+  render() {
+    return(
+      <Wrapper>
+        
+      </Wrapper>
+    )
+  }
+  
+
+
 }
 
-export default App;
+export default App
