@@ -46,16 +46,18 @@ class App extends Component {
   }
 
   addNewUserHandler = () => {
-    const newUser = {
-      name: this.newUserName.current.value,
-      surname: this.newUserSurname.current.value,
-      age: this.newUserAge.current.value,
-      id: this.state.idForNextUser
+    if(this.newUserName.current.value && this.newUserSurname.current.value && this.newUserAge.current.value) {
+      const newUser = {
+        name: this.newUserName.current.value,
+        surname: this.newUserSurname.current.value,
+        age: this.newUserAge.current.value,
+        id: this.state.idForNextUser
+      }
+      this.setState({
+         userList: this.state.userList.concat(newUser),
+         idForNextUser: this.state.idForNextUser + 1
+      })
     }
-    this.setState({
-       userList: this.state.userList.concat(newUser),
-       idForNextUser: this.state.idForNextUser + 1
-    })
   }
 
 
