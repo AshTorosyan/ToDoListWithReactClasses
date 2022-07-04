@@ -1,10 +1,11 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import Button from "./components/Button/Button";
 import Inlinetext from "./components/Inlinetext/Inlinetext";
 import Input from "./components/Input/Input";
 import List from "./components/List/List";
 import Listitem from "./components/Listitem/Listitem";
 import Wrapper from "./ui/Wrapper/Wrapper";
+import Card from "./ui/Card/Card";
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
       idForNextUser: 4,
       searchName: ''
     }
+    this.myRef = React.createRef('');
   }
 
   deleteUserHandler = (id) => {
@@ -40,7 +42,25 @@ class App extends Component {
   render() {
     return(
       <Wrapper>
-        <Input onChange={this.changeSearchNameHandler} />
+        <Card>
+          <Inlinetext> search users  by name </Inlinetext>
+          <Input onChange={this.changeSearchNameHandler} />
+        </Card>
+        <Card>
+           <Card>
+             <Inlinetext> user name </Inlinetext> <Input  />
+           </Card>
+           <Card>
+             <Inlinetext> user surname </Inlinetext> <Input/>
+           </Card>
+           <Card>
+             <Inlinetext> user age </Inlinetext> <Input/>
+           </Card>
+           
+           <Button> add </Button>
+        </Card>
+       
+        
         <List>
           {
             this.state.userList.filter(this.filterUsers).map(user => {
