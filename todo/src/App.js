@@ -19,8 +19,17 @@ class App extends Component {
       idForNextUser: 4,
       searchName: ''
     }
-    this.myRef = React.createRef('');
+    this.newUserName = React.createRef('');
+    this.newUserSurname = React.createRef('');
+    this.newUserAge = React.createRef('');
   }
+
+
+  changeSearchNameHandler = (event) => {
+    this.setState({
+      searchName: event.target.value
+    })
+  } 
 
   deleteUserHandler = (id) => {
     const filteredUsersList = this.state.userList.filter(el => el.id !== id);
@@ -33,11 +42,20 @@ class App extends Component {
     return item.name.toLocaleLowerCase().includes(this.state.searchName.toLocaleLowerCase())
   }
 
-  changeSearchNameHandler = (event) => {
+  addNewUserHandler = () => {
+    const newUser = {
+      name: this.newUserName.current.value,
+      surname: this.newUserSurname.current.value,
+      age: this.newUserAge.current.value,
+      id: this.state.idForNextUser
+    }
     this.setState({
-      searchName: event.target.value
+       userList: this.state.userList.concat(newUser),
+       idForNextUser: this.state.idForNextUser + 1
     })
-  } 
+  }
+
+
 
   render() {
     return(
@@ -48,16 +66,16 @@ class App extends Component {
         </Card>
         <Card>
            <Card>
-             <Inlinetext> user name </Inlinetext> <Input  />
+             <Inlinetext> user name </Inlinetext> <Input myPropsRef={this.newUserName} />
            </Card>
            <Card>
-             <Inlinetext> user surname </Inlinetext> <Input/>
+             <Inlinetext> user surname </Inlinetext> <Input myPropsRef={this.newUserSurname} />
            </Card>
            <Card>
-             <Inlinetext> user age </Inlinetext> <Input/>
+             <Inlinetext> user age </Inlinetext> <Input myPropsRef={this.newUserAge} />
            </Card>
            
-           <Button> add </Button>
+           <Button onClick={this.addNewUserHandler}> add </Button>
         </Card>
        
         
